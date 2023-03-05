@@ -1,4 +1,4 @@
-export type GearProps = React.HTMLAttributes<HTMLDivElement> & {
+export type GearProps = React.HTMLAttributes<HTMLButtonElement> & {
   name: string;
   numbersOnDice: GearRange[];
 };
