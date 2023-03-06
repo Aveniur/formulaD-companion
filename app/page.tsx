@@ -2,15 +2,13 @@
 
 /** Libraries (*/
 import { Monda } from 'next/font/google';
-import { useRef, useState } from 'react';
 
 /** Functional **/
-import Gear from 'components/Gear';
-import Result from 'components/Result';
-import { useFormulaStore } from 'store/useFormulaStore';
-import { GearRange } from 'components/Gear/Gear.types';
-import { gears } from 'components/Gear/Gear.utils';
-import { roundNumber } from 'utils/functions';
+import Gear from '@components/Gear';
+import Result from '@components/Result';
+import { useFormulaStore } from '@store/useFormulaStore';
+import { gears } from '@components/Gear/Gear.utils';
+import useDiceRoll from './page.useDiceRoll';
 
 const monda = Monda({
   subsets: ['latin'],
@@ -18,38 +16,9 @@ const monda = Monda({
 });
 
 const Home = () => {
-  const { result, setResult } = useFormulaStore();
+  const { result } = useFormulaStore();
 
-  const [isRolling, setIsRolling] = useState(false);
-
-  const diceTimeout = useRef<NodeJS.Timeout | null>(null);
-
-  const rollDice = (numbersOnDice: GearRange[]) => {
-    diceTimeout.current && clearTimeout(diceTimeout.current);
-    setIsRolling(true);
-
-    const accumulatedProbabilities: number[] = [];
-    numbersOnDice.reduce((acc, curr) => {
-      accumulatedProbabilities.push(roundNumber(acc + curr.probability, 2));
-      return acc + curr.probability;
-    }, 0);
-
-    const randomNumber = Math.random();
-
-    let randomIndex = accumulatedProbabilities.findIndex((probability) => {
-      return randomNumber <= probability;
-    });
-
-    while (randomIndex === -1) {
-      const newRandom = Math.random();
-      randomIndex = accumulatedProbabilities.findIndex((probability) => {
-        return newRandom <= probability;
-      });
-    }
-
-    setResult(numbersOnDice[randomIndex].number);
-    diceTimeout.current = setTimeout(() => setIsRolling(false), 500);
-  };
+  const { isRolling, rollDice } = useDiceRoll();
 
   return (
     <main
