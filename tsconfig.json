@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,11 +19,13 @@
         "name": "next"
       }
     ],
+    "baseUrl": "app",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+      "@/*": ["./*"],
+      "@components/*": ["components/*"],
+      "@store/*": ["store/*"],
+      "@utils/*": ["utils/*"]
+    },
   },
   "include": [
     "next-env.d.ts",
@@ -36,7 +34,5 @@
     ".next/types/**/*.ts",
     "C:\\Users\\jecha\\repos\\formulad-companion\\.next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
