@@ -8,7 +8,7 @@ const Result = (props: ResultProps) => {
       w-[100px] h-[100px] 
       box-border border-4 border-black rounded-xl
       prose prose-h1:text-[48px] shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]
-      scale-90
+      transform scale-[0.9]
       md:scale-[1.5]
       lg:scale-[2.25]`}
     >
