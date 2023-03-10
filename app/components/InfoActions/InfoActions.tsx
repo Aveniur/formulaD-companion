@@ -16,7 +16,7 @@ const InfoActions = () => {
     }, 0) / prevResults.length || 0;
 
   const iconButtonClassName = `info-actions__icon p-3 rounded-[50%] 
-    md:hover:bg-slate-200 active:bg-slate-300
+    active:bg-slate-400 hover:touch-none hover:bg-slate-200
     transition-colors duration-[300ms] ease-in-out`;
 
   const handleReroll = () => {
