@@ -35,11 +35,12 @@ const InfoActions = () => {
 
   return (
     <div
-      className={`info-actions absolute w-full h-full p-6
-    flex flex-col justify-between items-center 
+      className={`info-actions absolute w-full h-full
+    flex flex-col justify-between items-center
+    md:p-6
     prose-p:text-sm prose-p:m-0`}
     >
-      <p className="info-actions__average text-gray-600">
+      <p className="info-actions__average text-gray-600 pt-3 md:pt-0">
         avg. {roundNumber(average, 0)} slabs/turn
       </p>
       <div className="info-actions__icons-wrapper w-full flex justify-between">
