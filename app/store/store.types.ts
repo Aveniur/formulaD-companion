@@ -1,4 +1,6 @@
 export type StoreState = {
   result: number | null;
-  setResult: (result: number) => void;
+  prevResults: number[];
+  setResult: (result: number | null) => void;
+  setPrevResults: (prevResults: number[]) => void;
 };

@@ -2,12 +2,12 @@
 import { useRef, useState } from 'react';
 
 /** Functional **/
-import { useFormulaStore } from '@store/useFormulaStore';
 import { GearRange } from '@components/Gear/Gear.types';
 import { roundNumber } from '@utils/functions';
+import { useSelectFormulaStore } from '@store/useFormulaStore.selects';
 
 const useDiceRoll = () => {
-  const { setResult } = useFormulaStore();
+  const { prevResults, setResult, setPrevResults } = useSelectFormulaStore();
   const [isRolling, setIsRolling] = useState(false);
 
   const diceTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -35,8 +35,11 @@ const useDiceRoll = () => {
       });
     }
 
-    setResult(numbersOnDice[randomIndex].number);
-    diceTimeout.current = setTimeout(() => setIsRolling(false), 500);
+    diceTimeout.current = setTimeout(() => {
+      setResult(numbersOnDice[randomIndex].number);
+      setPrevResults([...prevResults, numbersOnDice[randomIndex].number]);
+      setIsRolling(false);
+    }, 500);
   };
   return {
     isRolling,

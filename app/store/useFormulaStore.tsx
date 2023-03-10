@@ -3,5 +3,8 @@ import { StoreState } from './store.types';
 
 export const useFormulaStore = create<StoreState>((set) => ({
   result: null,
-  setResult: (result: number | null) => set({ result }),
+  prevResults: [],
+  setResult: (result: number | null) => set(() => ({ result }), false),
+  setPrevResults: (prevResults: number[]) =>
+    set(() => ({ prevResults }), false),
 }));

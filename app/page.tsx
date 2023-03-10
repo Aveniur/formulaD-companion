@@ -9,6 +9,7 @@ import Result from '@components/Result';
 import { useFormulaStore } from '@store/useFormulaStore';
 import { gears } from '@components/Gear/Gear.utils';
 import useDiceRoll from './page.useDiceRoll';
+import InfoActions from '@components/InfoActions';
 
 const monda = Monda({
   subsets: ['latin'],
@@ -22,15 +23,15 @@ const Home = () => {
 
   return (
     <main
-      className={`home ${monda.className}
-      border-2 border-red-600
+      className={`home prose ${monda.className} max-w-full
       w-full h-full flex flex-col items-stretch
       md:flex-row`}
     >
-      <div className="home__result flex flex-1 bg-blue-400">
+      <div className="home__result relative flex flex-1 bg-white items-center justify-center max-w-full overflow-hidden">
+        <InfoActions />
         <Result isRolling={isRolling} result={result} />
       </div>
-      <div className="home__gears flex flex-col md:flex-1">
+      <div className="home__gears flex flex-col min-h-[calc(50%+5rem)] md:flex-1">
         {Object.keys(gears).map((key: string) => {
           const gear = gears[key as keyof typeof gears];
 
